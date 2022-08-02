@@ -39,7 +39,7 @@ const InfoCard = ({ info, onClick, title = 'title' }) => {
     return (
         <div style={containerStyle} ref={triggerRef}>
             <span className='info-card-container' onClick={onClick}>
-                <img loading={'lazy'} src={info.image} style={imgStyle} />
+                <img loading={'lazy'} src={info.image} style={imgStyle} alt={title}/>
                 <div className='glass'>
                     <p style={{ color: 'white' }}>{title}</p>
                 </div>

@@ -1,17 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const btnStyle = {
-    backgroundColor: 'transparent',
-    color: 'white',
-    border: '2px solid white',
-    padding: '10px 20px',
-    cursor: 'pointer',
-    textTransform: 'uppercase',
-    margin: '25px 0px 0px 0px',
-    fontSize: '14px',
-    fontWeight: 'bold'
-}
-
 const imageStyle = {
     height: '100vh',
     width: '100%',
@@ -60,7 +48,7 @@ const BasicInfoSlide = ({ info = {}, onClick }) => {
             <div style={infoContainer} ref={triggerRef}>
                 <p style={{ color: 'white', textTransform: 'uppercase', fontSize: '20px', margin: 0 }}>Recent launches</p>
                 <p style={{ color: 'white', textTransform: 'uppercase', fontSize: '40px', margin: 0, fontWeight: 600 }}>{info.mission_name}</p>
-                <button onClick={onClick} style={btnStyle}>Learn More</button>
+                <button onClick={onClick} className='square-button'>Learn More</button>
             </div>
             <img style={imageStyle} src={info.image} alt={info.mission_name}/>
         </div>

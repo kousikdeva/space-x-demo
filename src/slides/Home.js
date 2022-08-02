@@ -23,7 +23,6 @@ const Home = () => {
   useEffect(() => {
     const callBack = async () => {
       const {data} = await launchesServices.upcomingLaunches()
-      console.log(data);
       setDetails(addImg(data))
     }
     callBack()

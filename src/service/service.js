@@ -16,7 +16,7 @@ class Service {
         try {
             response = await this.service.get(path)
         } catch (error) {
-            console.log('Bad request', { path },error)
+            console.error('Bad request', { path },error)
         }
         return response
     }

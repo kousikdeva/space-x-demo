@@ -8,11 +8,7 @@ const imageStyle = {
     padding: 0,
     margin: 0
 }
-const container = {
-    padding: '80px',
-    display: 'flex',
-    flexDirection: 'column'
-}
+
 const btnContainer = { margin: '10px' }
 
 const MoreInfoSlide = ({ details, description = 'description' }) => {
@@ -52,7 +48,7 @@ const MoreInfoSlide = ({ details, description = 'description' }) => {
             <div style={btnContainer}>
                 <BackButton>&#60; Back</BackButton>
             </div>
-            <img style={imageStyle} src={details.image} />
+            <img style={imageStyle} src={details.image} alt={details?.rocket_name || details?.title || details?.mission_name} />
             <div style={infoContainer} ref={triggerRef}>
                 <p style={{ color: "#808B96" }}>{details.launch_date}</p>
                 <h2 style={{ color: 'white' }}>{details?.rocket_name}</h2>
