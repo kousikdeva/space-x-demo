@@ -6,10 +6,10 @@ const launchesServices = {
         return res
     },
     getLauncher: async (params) => {
-        const res = await services.get(`launches/${params}`)
+        const res = await services.get(`launches/${params.id}`)
         return res
     },
-    listLaunches: async ()=>{
+    listLaunches: async () => {
         const res = await services.get(`launches?limit=20`)
         return res
     }

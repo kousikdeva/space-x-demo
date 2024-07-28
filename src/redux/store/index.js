@@ -1,7 +1,7 @@
 import { applyMiddleware, legacy_createStore as createStore, compose } from "redux"
 import createSagaMiddleware from "redux-saga"
 import reducer from "./reducer"
-import middleware from "./middleware"
+import middleware from "./sagaMiddleware"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})

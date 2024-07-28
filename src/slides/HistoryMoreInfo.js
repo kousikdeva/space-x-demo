@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import MoreInfoSlide from '../components/MoreInfoSlide'
-import { randomImages } from '../mock/rocketsImgDetails'
-import historyServices from '../service/historyServices'
-import { randomObject, dateFormat } from '../utils/helper'
+import { GET_HISTORY, CLEAR_HISTORY } from '../constants/actionType'
 
 const HistoryMoreInfo = () => {
   const params = useParams()
-  const [details, setDetails] = useState({})
+  const dispatch = useDispatch()
+  const { history } = useSelector((state) => state.historyReducer)
 
   useEffect(() => {
-    const callBack = async () => {
-      const { data } = await historyServices.getHistory(params.id)
-      setDetails({ ...data, image: randomObject(randomImages).image, launch_date: dateFormat(data.event_date_utc) })
-    }
-    callBack()
+    dispatch({ type: GET_HISTORY, payload: { id: params?.id } })
+    return () => dispatch({ type: CLEAR_HISTORY })
   }, [])
 
   return (
-    <div style={{ backgroundColor: 'black'}}>
-      <MoreInfoSlide description={details.details} details={details} />
+    <div style={{ backgroundColor: 'black' }}>
+      <MoreInfoSlide description={history.details} details={history} />
     </div>
   )
 }

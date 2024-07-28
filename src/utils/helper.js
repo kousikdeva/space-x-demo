@@ -1,3 +1,5 @@
+import { defaultImage, spaceCraft } from "../mock/rocketsImgDetails"
+
 export const dateFormat = (item) => {
     const getMonth = (month) => {
         switch (month) {
@@ -23,4 +25,13 @@ export const dateFormat = (item) => {
 
 export const randomObject = (list) => {
     return list[Math.floor((Math.random() * list.length))]
-  }
+}
+
+export const addImg = (data) => {
+    let value = []
+    data.forEach((item) => {
+        let image = (spaceCraft.find((data) => data.name === item.mission_name)).image
+        value = [...value, { ...item, image: image ?? defaultImage }]
+    })
+    return value
+}

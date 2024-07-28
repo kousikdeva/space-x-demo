@@ -6,7 +6,7 @@ const historyServices = {
         return res
     },
     getHistory: async (params) => {
-        const res = await services.get(`history/${params}`)
+        const res = await services.get(`history/${params.id}`)
         return res
     }
 }

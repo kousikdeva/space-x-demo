@@ -1,25 +1,22 @@
 import axios from 'axios'
 
-class Service {
-    constructor({ baseURL }) {
-        let service = axios.create({ baseURL })
-        service.interceptors.response.use(this.handleSuccess)
-        this.service = service
-    }
+function Service({ baseURL }) {
 
-    handleSuccess(response) {
-        return response
-    }
+    const service = axios.create({ baseURL: baseURL })
 
-    async get(path) {
+    async function get(path) {
         let response
         try {
-            response = await this.service.get(path)
+            response = await service.get(path)
         } catch (error) {
-            console.error('Bad request', { path },error)
+            console.error('Bad request', { path }, error)
         }
         return response
     }
+
+    return {
+        get
+    }
 }
 
-export const services = new Service({ baseURL: process.env.REACT_APP_API_BASE_URL })
+export const services = Service({ baseURL: process.env.REACT_APP_API_BASE_URL })

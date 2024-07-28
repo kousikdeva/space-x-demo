@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 import BackButton from '../components/BackButton'
 import InfoCard from '../components/InfoCard'
-import historyServices from '../service/historyServices'
-import { randomImages } from '../mock/rocketsImgDetails'
-import { randomObject } from '../utils/helper'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { GET_ALL_HISTORY } from '../constants/actionType'
 
 const buttonContainer = {
   padding: '0px 50px',
@@ -16,16 +15,13 @@ const buttonContainer = {
 }
 
 const History = () => {
-  const [info, setInfo] = useState([])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { allHistories } = useSelector((state) => state.historyReducer)
 
   useEffect(() => {
-    const callBack = async () => {
-      const { data } = await historyServices.listHistories()
-      let newData = data.map(item => ({ ...item, image: randomObject(randomImages).image }))
-      setInfo(newData)
-    }
-    callBack()
+    dispatch({ type: GET_ALL_HISTORY })
+
   }, [])
 
   const handleClickCard = (id) => {
@@ -34,13 +30,13 @@ const History = () => {
 
   return (
     <div style={{ backgroundColor: 'black', padding: '100px 0px', minHeight: '100vh' }}>
-      {info.length < 1 && <LoadingSpinner />}
+      {allHistories?.length < 1 && <LoadingSpinner />}
       <div style={buttonContainer}>
         <BackButton style={{ position: 'absolute', left: 50 }}>&#60; Back</BackButton>
         <h2 style={{ color: 'white' }}>History</h2>
       </div>
       <div className='history-container'>
-        {info.map(item => <InfoCard title={item.title} info={item} key={item.id} onClick={() => handleClickCard(item.id)} />)}
+        {allHistories?.map(item => <InfoCard title={item.title} info={item} key={item.id} onClick={() => handleClickCard(item.id)} />)}
       </div>
     </div>
   )
