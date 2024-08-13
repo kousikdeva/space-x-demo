@@ -19,4 +19,4 @@ function Service({ baseURL }) {
     }
 }
 
-export const services = Service({ baseURL: process.env.REACT_APP_API_BASE_URL })
+export const services = Service({ baseURL: 'https://api.spacexdata.com/v3' })

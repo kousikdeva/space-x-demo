@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import routes from './routes'
 
 const RouterView = () => {
@@ -18,11 +18,11 @@ const RouterView = () => {
         )
     }
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 {routes?.map(parent => getRoutes(parent))}
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     )
 }
 
